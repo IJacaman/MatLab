@@ -1,0 +1,14 @@
+function rxy=H_correlation(image1)
+      P=double(image1);
+x1 = double(P(:,1:end-1)); 
+y1 = double(P(:,2:end)); 
+randIndex1 = randperm(numel(x1)); 
+randIndex1 = randIndex1(1:1000); 
+x = x1(randIndex1); 
+y = y1(randIndex1); 
+Ex=(1/(1000))*sum(x);
+Ey=(1/(1000))*sum(y);
+        Dx=(1/(1000))*sum((x(:)-Ex).^2);
+        Dy=(1/(1000))*sum((y(:)-Ey).^2);
+        coxy=(1/(1000))*(sum((x-Ex).*(y-Ey)));
+rxy=coxy/(sqrt(Dx*Dy));
